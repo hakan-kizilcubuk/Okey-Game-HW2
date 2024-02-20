@@ -66,7 +66,19 @@ public class SimplifiedOkeyGame {
      * finished the game. use checkWinning method of the player class to determine
      */
     public boolean didGameFinish() {
-        return false;
+        
+        //A boolean which checks whether the game finishes or not
+        boolean didGameFinish = false;
+        
+        for (int i = 0; i < players.length; i++)
+        {
+            //If the checkwinning condition satisfies the boolean becomes true
+            if (players[i].checkWinning() == true)
+            {
+                didGameFinish = true;
+            }
+        }
+        return didGameFinish;
     }
 
     /* TODO: finds the player who has the highest number for the longest chain
