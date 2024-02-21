@@ -69,15 +69,13 @@ public class SimplifiedOkeyGame {
         
         //A boolean which checks whether the game finishes or not
         boolean didGameFinish = false;
-        
-        for (int i = 0; i < players.length; i++)
+        int currPlayerIndex = this.getCurrentPlayerIndex();
+
+        if (players[currPlayerIndex].checkWinning() == true)
         {
-            //If the checkwinning condition satisfies the boolean becomes true
-            if (players[i].checkWinning() == true)
-            {
-                didGameFinish = true;
-            }
+            didGameFinish = true;
         }
+        
         return didGameFinish;
     }
 
