@@ -191,7 +191,7 @@ public class Player {
     
         for(int x=1;x+nearest_index+1<this.playerTiles.length;x++)
         {
-            this.playerTiles[nearest_index+x]=this.playerTiles[nearest_index+x+1];
+            this.playerTiles[nearest_index+x+1]=this.playerTiles[nearest_index+x];
         }
     
         this.playerTiles[nearest_index+1]=t;
