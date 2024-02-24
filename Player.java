@@ -150,8 +150,51 @@ public class Player {
      * this requires you to loop over the existing tiles to find the correct position,
      * then shift the remaining tiles to the right by one
      */
-    public void addTile(Tile t) {
+    public void addTile(Tile t) 
+    {
+        int new_value = t.getValue();
 
+        //Sorting
+        int temp;
+
+        for(int n=0;n<this.playerTiles.length-1;n++)
+        {
+            for(int m=0;m<this.playerTiles.length;m++)
+            {
+                if(this.playerTiles[m].getValue()<this.playerTiles[n].getValue())
+                {
+                    temp=this.playerTiles[n].getValue();
+                    this.playerTiles[n].value=this.playerTiles[m].value;
+                    this.playerTiles[m].value=temp;
+                }
+            }
+        }
+    
+        int difference=0;
+        int smallest_difference=20;//random big number
+
+        int nearest_index=0;
+        
+        for(int a=0;a<this.playerTiles.length;a++)
+        {
+            if(new_value-this.playerTiles[a].getValue()>0)
+            {
+                difference=new_value-this.playerTiles[a].getValue();
+            
+                if(difference<smallest_difference)
+                {
+                    smallest_difference=difference;
+                    nearest_index=a;
+                }
+            }
+        }
+    
+        for(int x=1;x+nearest_index+1<this.playerTiles.length;x++)
+        {
+            this.playerTiles[nearest_index+x]=this.playerTiles[nearest_index+x+1];
+        }
+    
+        this.playerTiles[nearest_index+1]=t;
     }
 
     /*
