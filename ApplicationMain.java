@@ -79,6 +79,14 @@ public class ApplicationMain {
                     playerChoice = sc.nextInt();
 
                     // TODO: make sure the given index is correct, should be 0 <= index <= 14
+                    boolean validIndex = playerChoice >= 0 && playerChoice < 15; 
+                    while (!validIndex) 
+                    {
+                        System.out.println("Invalid index. Please choose a valid tile index between 0 and 14.");
+                        System.out.print("Discard the tile in index: ");
+                        playerChoice = sc.nextInt();
+                        validIndex = playerChoice >= 0 && playerChoice < 15;
+                    }
 
                     game.discardTile(playerChoice);
                     game.passTurnToNextPlayer();
