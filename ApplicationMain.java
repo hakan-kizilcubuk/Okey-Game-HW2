@@ -105,7 +105,7 @@ public class ApplicationMain {
                         //more than one winner (tie)
                         if (winners.length > 1) 
                         {
-                            System.out.println("The game ended in a tie between the following players with the longest chains:");
+                            System.out.println("The game ended in a tie between the following players: ");
                             for (Player winner : winners) 
                             {
                                 System.out.println(winner.getName()); 
@@ -114,7 +114,7 @@ public class ApplicationMain {
                         else if (winners.length == 1) 
                         {
                             // single winner
-                            System.out.println("The game ended. The winner is " + winners[0].getName() + " with the longest chain!");
+                            System.out.println("The game ended. The winner is " + winners[0].getName() + " with the longest chain");
                         } 
                         else 
                         {
