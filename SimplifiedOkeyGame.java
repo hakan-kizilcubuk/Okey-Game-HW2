@@ -68,7 +68,9 @@ public class SimplifiedOkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        return null;
+        Player currentPlayer = players[ this.getCurrentPlayerIndex()];
+        currentPlayer.addTile( lastDiscardedTile);
+        return  lastDiscardedTile.toString();
     }
 
     /*
@@ -78,7 +80,18 @@ public class SimplifiedOkeyGame {
      * returns the toString method of the tile so that we can print what we picked
      */
     public String getTopTile() {
-        return null;
+        Player currentPlayer = players[ this.getCurrentPlayerIndex()];
+        tileCount--;
+        Tile topTile = tiles[ tileCount];
+        currentPlayer.addTile( topTile);
+        Tile[] newTiles = new Tile[tileCount];
+
+        for ( int i = 0; i < newTiles.length; i++)
+        {
+            newTiles[i] = tiles[i];
+        }
+
+        return topTile.toString();
     }
 
     /*
@@ -165,7 +178,17 @@ public class SimplifiedOkeyGame {
      * by checking if it increases the longest chain length, if not get the top tile
      */
     public void pickTileForComputer() {
-
+        Player currentPlayer = players[ this.getCurrentPlayerIndex()];
+        int lastTileIndex = tileCount;
+        if ( lastDiscardedTile.compareTo( tiles[ lastTileIndex]) > 0)
+        {
+            currentPlayer.addTile(lastDiscardedTile);
+        }
+        else
+        {
+            Tile topTile = tiles[ tileCount];
+            currentPlayer.addTile( topTile);;
+        }
     }
 
     /*
@@ -173,7 +196,21 @@ public class SimplifiedOkeyGame {
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
+        Player currentPlayer = players[ this.getCurrentPlayerIndex()];
+        Tile leastUsefulTile = currentPlayer.playerTiles[0];
+        int leastUsefulTileIndex = 0;
 
+        for ( int i = 1; i < currentPlayer.playerTiles.length; i++)
+        {
+            if ( leastUsefulTile.compareTo( currentPlayer.playerTiles[i]) <= 0)
+            {
+                leastUsefulTile = currentPlayer.playerTiles[i];
+                leastUsefulTileIndex = i;
+            }
+        }
+        
+        currentPlayer.getAndRemoveTile( leastUsefulTileIndex);
+        lastDiscardedTile = leastUsefulTile;
     }
 
     /*
@@ -182,7 +219,23 @@ public class SimplifiedOkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
+        Player currentPlayer = players[ this.getCurrentPlayerIndex()];
+        ArrayList <Tile> newPlayerTiles = new ArrayList <Tile> ();
 
+        for ( int i = 0; i < currentPlayer.playerTiles.length; i++)
+        {
+            newPlayerTiles.add( currentPlayer.playerTiles[i]);
+        }
+
+        newPlayerTiles.remove( tileIndex);
+        lastDiscardedTile = currentPlayer.playerTiles[ tileIndex];
+
+        for ( int i = 0; i < newPlayerTiles.size(); i++)
+        {
+            currentPlayer.playerTiles[i] = newPlayerTiles.get( i);
+        }
+
+        currentPlayer.playerTiles[ currentPlayer.playerTiles.length - 1] = null;
     }
 
     public void displayDiscardInformation() {
