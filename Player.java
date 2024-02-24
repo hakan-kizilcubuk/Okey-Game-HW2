@@ -22,7 +22,7 @@ public class Player {
         int first_tile=this.playerTiles[0].getValue();
         int last_tile=this.playerTiles[13].getValue();
 
-        int difference= first_tile-last_tile;
+        int difference= last_tile-first_tile;
         
         for(int i=0;i<13;i++)
         {
