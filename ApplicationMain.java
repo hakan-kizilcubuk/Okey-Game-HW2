@@ -148,6 +148,26 @@ public class ApplicationMain {
                         // TODO: the game ended with no more tiles in the stack
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
+                        Player[] winners = game.getPlayerWithHighestLongestChain();
+
+                        //more than one winner (tie)
+                        if (winners.length > 1) 
+                        {
+                            System.out.println("The game ended in a tie between the following players with the longest chains:");
+                            for (Player winner : winners) 
+                            {
+                                System.out.println(winner.getName()); 
+                            }
+                        } 
+                        else if (winners.length == 1) 
+                        {
+                            // single winner
+                            System.out.println("The game ended. The winner is " + winners[0].getName() + " with the longest chain!");
+                        } 
+                        else 
+                        {
+                            System.out.println("No winner could be determined.");
+                        }
                     }
                 }
             }
