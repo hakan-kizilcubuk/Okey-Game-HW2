@@ -101,7 +101,7 @@ public class SimplifiedOkeyGame {
         Random rand = new Random();
         int randTiles;
         Tile temp = new Tile(14);
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < 30; i++)
         {
             randTiles = rand.nextInt(tiles.length - 1);
             temp = tiles[i];
