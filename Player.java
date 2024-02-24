@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player {
     String playerName;
     Tile[] playerTiles;
@@ -20,13 +22,13 @@ public class Player {
     {
         
         int first_tile=this.playerTiles[0].getValue();
-        int last_tile=this.playerTiles[13].getValue();
+        int last_tile=this.playerTiles[14].getValue();
 
         int difference= last_tile-first_tile;
         
-        for(int i=0;i<13;i++)
+        for(int i=0;i<14;i++)
         {
-            for(int a=i+1;a<14;a++)
+            for(int a=i+1;a<15;a++)
             {
                 if(this.playerTiles[i]==this.playerTiles[a])
                 {
@@ -49,9 +51,73 @@ public class Player {
      * of consecutive numbers, used for checking the winning condition
      * and also for determining the winner if tile stack has no tiles
      */
-    public int findLongestChain() {
+    public int findLongestChain() 
+    {
         int longestChain = 0;
 
+        int current_chain= 1;
+
+        ArrayList<Integer> values_title= new ArrayList<Integer>();
+
+        for(int i=0;i<15;i++)
+        {
+            values_title.add(this.playerTiles[i].getValue());
+        }
+        
+        for(int a=0;a<values_title.size()-1;a++)
+        {
+            for(int b=a+1;b<values_title.size();b++)
+            {
+                if(values_title.get(a)==values_title.get(b))
+                {
+                    values_title.remove(b);
+                }
+            }
+        }
+        
+        int[] values_to_sort=new int[values_title.size()+1];
+        
+        for(int i=0;i<values_to_sort.length;i++)
+        {
+            values_to_sort[i]=values_title.get(i);
+        }
+        
+       
+        int temp;
+
+        for(int n=0;n<values_to_sort.length-1;n++)
+        {
+            for(int m=0;m<values_to_sort.length;m++)
+            {
+                if(values_to_sort[m]<values_to_sort[n])
+                {
+                    temp=values_to_sort[n];
+                    values_to_sort[n]=values_to_sort[m];
+                    values_to_sort[m]=temp;
+                }
+            }
+        }
+        
+        int x=0;
+
+        while(x<values_to_sort.length-1)
+        {
+            if(values_to_sort[x+1]==values_to_sort[x]+1)
+            {
+                current_chain++;
+            }
+            else
+            {
+                if(current_chain>longestChain)
+                {
+                    longestChain=current_chain;
+                    current_chain=0;
+                }
+            }
+            
+            x++;
+        }
+        
         return longestChain;
     }
 
