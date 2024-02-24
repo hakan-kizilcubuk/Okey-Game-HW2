@@ -16,8 +16,31 @@ public class Player {
      * and the extra tile does not disturb the longest chain and therefore the winning condition
      * check the assigment text for more details on winning condition
      */
-    public boolean checkWinning() {
-        return false;
+    public boolean checkWinning() 
+    {
+        
+        int first_tile=this.playerTiles[0].getValue();
+        int last_tile=this.playerTiles[13].getValue();
+
+        int difference= first_tile-last_tile;
+        
+        for(int i=0;i<13;i++)
+        {
+            for(int a=i+1;a<14;a++)
+            {
+                if(this.playerTiles[i]==this.playerTiles[a])
+                {
+                    return false;
+                }
+            }
+        }
+        
+        if(difference!=13)
+        {
+            return false;
+        }
+        
+        return true;
     }
 
     /*
