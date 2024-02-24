@@ -124,8 +124,25 @@ public class Player {
     /*
      * TODO: removes and returns the tile in given index position
      */
-    public Tile getAndRemoveTile(int index) {
-        return null;
+    public Tile getAndRemoveTile(int index) 
+    {
+        Tile tileToGet = this.playerTiles[index];
+
+        ArrayList<Tile> tempList = new ArrayList<Tile>();
+        
+        for(int i=0;i<this.playerTiles.length;i++)
+        {
+            tempList.add(this.playerTiles[i]);
+        }
+        
+        tempList.remove(index);
+
+        for(int m=0;m<this.playerTiles.length-1;m++)
+        {
+            this.playerTiles[m]=tempList.get(m);
+        }
+        
+        return tileToGet;
     }
 
     /*
