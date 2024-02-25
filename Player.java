@@ -126,6 +126,8 @@ public class Player {
      */
     public Tile getAndRemoveTile(int index) 
     {
+        this.numberOfTiles--;
+        
         Tile tileToGet = this.playerTiles[index];
 
         ArrayList<Tile> tempList = new ArrayList<Tile>();
@@ -154,12 +156,14 @@ public class Player {
     {
         int new_value = t.getValue();
 
+        this.playerTiles[this.numberOfTiles]=t;
+
         //Sorting
         int temp;
 
-        for(int n=0;n<this.playerTiles.length-1;n++)
+        for(int n=0;n<numberOfTiles;n++)
         {
-            for(int m=0;m<this.playerTiles.length;m++)
+            for(int m=n+1;m<numberOfTiles+1;m++)
             {
                 if(this.playerTiles[m].getValue()<this.playerTiles[n].getValue())
                 {
@@ -169,32 +173,8 @@ public class Player {
                 }
             }
         }
-    
-        int difference=0;
-        int smallest_difference=20;//random big number
-
-        int nearest_index=0;
         
-        for(int a=0;a<this.playerTiles.length;a++)
-        {
-            if(new_value-this.playerTiles[a].getValue()>0)
-            {
-                difference=new_value-this.playerTiles[a].getValue();
-            
-                if(difference<smallest_difference)
-                {
-                    smallest_difference=difference;
-                    nearest_index=a;
-                }
-            }
-        }
-    
-        for(int x=1;x+nearest_index+1<this.playerTiles.length;x++)
-        {
-            this.playerTiles[nearest_index+x+1]=this.playerTiles[nearest_index+x];
-        }
-    
-        this.playerTiles[nearest_index+1]=t;
+        this.numberOfTiles++;
     }
 
     /*
