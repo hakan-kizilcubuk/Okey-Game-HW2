@@ -21,27 +21,37 @@ public class Player {
     public boolean checkWinning() 
     {
         
-        int first_tile=this.playerTiles[0].getValue();
-        int last_tile=this.playerTiles[14].getValue();
+        int number_of_mistake=0;
 
-        int difference= last_tile-first_tile;
-        
-        for(int i=0;i<14;i++)
+        //Sorting
+        int temp;
+
+        for(int n=0;n<numberOfTiles;n++)
         {
-            for(int a=i+1;a<15;a++)
+            for(int m=n+1;m<numberOfTiles+1;m++)
             {
-                if(this.playerTiles[i]==this.playerTiles[a])
+                if(this.playerTiles[m].getValue()<this.playerTiles[n].getValue())
                 {
-                    return false;
+                    temp=this.playerTiles[n].getValue();
+                    this.playerTiles[n].value=this.playerTiles[m].value;
+                    this.playerTiles[m].value=temp;
                 }
             }
         }
         
-        if(difference!=13)
+        for(int i=1;i<numberOfTiles;i++)
+        {
+            if(playerTiles[i].value!=playerTiles[i-1].value+1)
+            {
+                number_of_mistake++;
+            }
+        }
+        
+        if(number_of_mistake>1)
         {
             return false;
         }
-        
+       
         return true;
     }
 
