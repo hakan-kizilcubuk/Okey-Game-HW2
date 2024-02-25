@@ -20,15 +20,14 @@ public class Player {
      */
     public boolean checkWinning() 
     {
-        
         int number_of_mistake=0;
 
         //Sorting
         int temp;
 
-        for(int n=0;n<numberOfTiles;n++)
+        for(int n=0;n<numberOfTiles-1;n++)
         {
-            for(int m=n+1;m<numberOfTiles+1;m++)
+            for(int m=n+1;m<numberOfTiles;m++)
             {
                 if(this.playerTiles[m].getValue()<this.playerTiles[n].getValue())
                 {
@@ -107,7 +106,7 @@ public class Player {
                 }
             }
         }
-        
+
         int x=0;
 
         while(x<values_to_sort.length-1)
