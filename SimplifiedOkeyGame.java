@@ -179,14 +179,14 @@ public class SimplifiedOkeyGame {
      */
     public void pickTileForComputer() {
         Player currentPlayer = players[ this.getCurrentPlayerIndex()];
-        int lastTileIndex = tileCount;
+        int lastTileIndex = tileCount - 1;
         if ( lastDiscardedTile.compareTo( tiles[ lastTileIndex]) > 0)
         {
             currentPlayer.addTile(lastDiscardedTile);
         }
         else
         {
-            Tile topTile = tiles[ tileCount];
+            Tile topTile = tiles[ lastTileIndex];
             currentPlayer.addTile( topTile);;
         }
     }
