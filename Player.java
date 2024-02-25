@@ -97,7 +97,7 @@ public class Player {
 
         for(int n=0;n<values_to_sort.length-1;n++)
         {
-            for(int m=0;m<values_to_sort.length;m++)
+            for(int m=n+1;m<values_to_sort.length;m++)
             {
                 if(values_to_sort[m]<values_to_sort[n])
                 {
