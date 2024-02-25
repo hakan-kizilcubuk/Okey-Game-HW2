@@ -81,15 +81,10 @@ public class SimplifiedOkeyGame {
      */
     public String getTopTile() {
         Player currentPlayer = players[ this.getCurrentPlayerIndex()];
-        tileCount--;
-        Tile topTile = tiles[ tileCount];
+        Tile topTile = tiles[ tileCount - 1];
         currentPlayer.addTile( topTile);
-        Tile[] newTiles = new Tile[tileCount];
-
-        for ( int i = 0; i < newTiles.length; i++)
-        {
-            newTiles[i] = tiles[i];
-        }
+        tileCount--;
+        tiles[ tileCount] = null;
 
         return topTile.toString();
     }
